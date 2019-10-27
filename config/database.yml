@@ -46,9 +46,11 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: snslist_production
   username: snslist
   password: <%= ENV['SNSLIST_DATABASE_PASSWORD'] %>
