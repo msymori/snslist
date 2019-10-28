@@ -41,8 +41,24 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'プロフィールは更新されませんでした。'
       render :edit
     end
+  end
+  
+  def password
+    @user = User.find(params[:id])
   end 
   
+  def uppass
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      flash[:success] = 'パスワードを変更しました。'
+      redirect_to @user
+    else
+      flash.now[:danger] = 'パスワードの変更されませんでした。'
+      render :password
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
