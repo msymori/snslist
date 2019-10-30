@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_26_130936) do
+ActiveRecord::Schema.define(version: 2019_10_30_130100) do
+
+  create_table "goods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "microposts_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["microposts_id"], name: "index_goods_on_microposts_id"
+    t.index ["user_id", "microposts_id"], name: "index_goods_on_user_id_and_microposts_id", unique: true
+    t.index ["user_id"], name: "index_goods_on_user_id"
+  end
 
   create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -18,6 +28,16 @@ ActiveRecord::Schema.define(version: 2019_10_26_130936) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "nices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "micropost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_nices_on_micropost_id"
+    t.index ["user_id", "micropost_id"], name: "index_nices_on_user_id_and_micropost_id", unique: true
+    t.index ["user_id"], name: "index_nices_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -38,7 +58,11 @@ ActiveRecord::Schema.define(version: 2019_10_26_130936) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "goods", "microposts", column: "microposts_id"
+  add_foreign_key "goods", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "nices", "microposts"
+  add_foreign_key "nices", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
 end

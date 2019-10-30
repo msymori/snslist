@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :user
+  
+  has_many :nices
+  has_many :nicings, through: :nices, source: :micropost
 
 	def follow(other_user)
 		unless self == other_user
@@ -30,4 +33,23 @@ class User < ApplicationRecord
 	def feed_microposts
     Micropost.where(user_id: self.following_ids + [self.id])
   end
+  
+  
+  
+  def nice(micropost)
+  	unless self == micropost
+  		self.nices.find_or_create_by(micropost_id: micropost.id)
+  	end 
+  end
+  
+  def unnice(micropost)
+  	nice = self.nices.find_by(micropost_id: micropost.id)
+  	nice.destroy if nice
+  end 
+  
+  def nicing?(micropost)
+  	self.nicings.include?(micropost)
+  end
+ 
+  
 end

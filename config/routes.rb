@@ -14,9 +14,13 @@ Rails.application.routes.draw do
       get :password
       put :uppass
       patch :uppass
+      
+      get :nicings
+      get :nicers
     end
   end
 
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :nices, only: [:create, :destroy]
 end
