@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    model:
+      user: ユーザー
+    attributes:
+      user:
+        name: ユーザー名
+        email: メール
+        password: パスワード
+      micropost:
+        user: ユーザー
