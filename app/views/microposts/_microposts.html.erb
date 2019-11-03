@@ -9,6 +9,11 @@
         <div>
           <p><%= micropost.content %></p>
         </div>
+        <% if micropost.img? %>
+          <div class="img">
+            <%= image_tag micropost.img.url, class: 'img' %>
+          </div>
+        <% end %>
         
         <div>
           <%= render 'nices/nicing_button', micropost: micropost %>
