@@ -16,10 +16,17 @@ default: &default
   username: root
   password:
   host: localhost
+  
 
 development:
   <<: *default
   database: snslist_development
+  # cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  # api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
+  # api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
+  # enhance_image_tag: true
+  # static_image_support: false
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

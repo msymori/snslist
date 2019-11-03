@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: ht0pxkmni
+  api_key: '772791774846393'
+  api_secret: baK4CLWlgnC7YYCugqv-GNGs3qs
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: ht0pxkmni
+  api_key: '772791774846393'
+  api_secret: baK4CLWlgnC7YYCugqv-GNGs3qs
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: ht0pxkmni
+  api_key: '772791774846393'
+  api_secret: baK4CLWlgnC7YYCugqv-GNGs3qs
+  enhance_image_tag: true
+  static_file_support: false
